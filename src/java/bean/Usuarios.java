@@ -3,25 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bean;
-import com.itextpdf.text.BaseColor;
+//import com.itextpdf.text.BaseColor;
 import java.sql.*;
 import java.io.File;
 import java.io.FileWriter;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.Font;
+//import com.itextpdf.text.FontFactory;
+//import com.itextpdf.text.Image;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.PdfPCell;
+//import com.itextpdf.text.pdf.PdfPTable;
+//import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.*;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.chart.*;
+//import org.jfree.data.general.DefaultPieDataset;
+//import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -30,7 +30,23 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class Usuarios {
     private String usuario, password;
     private String respuesta, opcion;
-    private String nombre, materno, paterno;
+    private String nombre, materno, paterno, email, tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getNombre() {
         return nombre;
@@ -92,6 +108,12 @@ public class Usuarios {
         if (opcion.equals("registro")) {
             obtenerUsuario();
         }
+        if (opcion.equals("llenaS")){
+            llenarSelector();
+        }
+        if (opcion.equals("modificaT")){
+            modificarTipo();
+        }
     }
     
     
@@ -148,6 +170,59 @@ public class Usuarios {
     }
     
     public void guardarRegistro(){
-        
+        try{
+        Connection c = Conexion.conectar();
+        if (c != null) {
+            CallableStatement cs = c.prepareCall("{call AltaUsuario(?,?,?,?,?,?,?)}");
+            
+            cs.setString(1,nombre);
+            cs.setString(2,paterno);
+            cs.setString(3,materno);
+            cs.setString(4,email);
+            cs.setString(5,usuario);
+            cs.setString(6,password);
+            cs.registerOutParameter(7, Types.VARCHAR);
+            cs.execute();
+            respuesta += cs.getString(7);        
+    }
+    }catch(Exception er){
+        respuesta = "Error al agregar usario"+ er;
+        }
+    }
+    public void llenarSelector() {
+        try {
+            Connection c = Conexion.conectar();
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement("select * from Usuarios");
+                ResultSet rs = ps.executeQuery();
+                respuesta = "<select name='usuario'>";
+                while (rs.next()) {
+                    String usuario = rs.getString("usuario");
+                    respuesta += "<option value='" + usuario + "'>" + usuario + "</option>";
+ 
+                }
+                respuesta += "</select>";
+            } else {
+                respuesta = "Error.jsp?respuesta=No hay conexion en la base";
+            }
+        } catch (Exception e) {
+            respuesta = "Error.jsp?respuesta=Error al llenar Selector " + e;
+        }
+    }
+    public void modificarTipo(){
+        try {
+            Connection c = Conexion.conectar();
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement("update Usuarios set tipo=? where usuario=?");
+                ps.setString(1, tipo);
+                ps.setString(2, usuario);
+                ps.execute();
+                respuesta="Tipo modificado";
+            }else{
+             respuesta="No hay conexion a la base";        
+            }
+        }catch(Exception er){
+            respuesta="Error al modificar tipo "+er;
+            }
     }
 }

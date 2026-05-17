@@ -11,25 +11,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     <body>
         <H1>Generar cita</H1>
-        <form action="${pageContext.request.contextPath}/Control" method="post">
+        <form action="Control" method="post">
         Nombre: <input type:="text" name="nombres">
         <br> 
-        Apellidos:<input type:="text" name="Cpaterno">
-        <input type:="text" name="Cmaterno">
+        Apellidos:<input type:="text" name="cpaterno">
+        <input type:="text" name="cmaterno">
         <br>
         Edad: <input type:="text" name="edad">
         <br>
+        Genero: <select name="genero">
+            <option value="F"> FEMENINO </option>
+            <option value="M"> MASCULINO</option>           
+        </select><br>
         Hora:
         <input type="time" name="horacita">
         <br>
         Fecha:
         <input type="date" name="fechacita"> <br><br>
         <input type="submit" value="Generar cita" name="boton">
-        </form>>
-<br><br>
-
-
-
-        
+        </form>     
     </body>
 </html>

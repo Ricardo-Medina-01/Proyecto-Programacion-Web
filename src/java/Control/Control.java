@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bean.Usuarios;
+import java.util.HashSet;
 
 /**
  *
@@ -75,7 +76,7 @@ public class Control extends HttpServlet {
         
         String opcion = request.getParameter("boton");
         
-                  /**Consulta**/
+                  // Consultar 
         
             if (opcion.equalsIgnoreCase("Consultar Usuario")) {
             Usuarios U = new Usuarios();
@@ -83,7 +84,7 @@ public class Control extends HttpServlet {
             U.consultarUsuario();
             response.sendRedirect("Administrador/Usuarios/respuesta.jsp?respuesta="+ U.getRespuesta());
             }
-                      /**Eliminar**/
+                      // Eliminar
         
             if (opcion.equalsIgnoreCase("Eliminar Usuario")) {
             Usuarios U = new Usuarios();
@@ -92,6 +93,19 @@ public class Control extends HttpServlet {
             response.sendRedirect("Administrador/Usuarios/respuesta.jsp?respuesta="+ U.getRespuesta());
             }
             
+                            //Generar cita 
+            if (opcion.equalsIgnoreCase("Generar cita")) {
+            Usuarios U = new Usuarios();
+            U.setNombres(request.getParameter("nombres"));
+            U.setCpaterno(request.getParameter("cpaterno"));
+            U.setCmaterno(request.getParameter("cmaterno"));
+            U.setEdad(Integer.parseInt(request.getParameter("edad")));
+            U.setGenero(request.getParameter("genero"));
+            U.setFechacita(request.getParameter("fechacita"));
+            U.setHoracita(request.getParameter("horacita"));
+            U.Generacita();
+            response.sendRedirect("Administrador/Citas/respuesta.jsp?respuesta=" + U.getRespuesta());
+}              
 
     /**
      * Returns a short description of the servlet.

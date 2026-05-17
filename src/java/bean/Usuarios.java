@@ -31,7 +31,68 @@ public class Usuarios {
     private String usuario, password;
     private String respuesta, opcion;
     private String nombre, materno, paterno, email, tipo;
+    
+    //Crear citas
+    
+    private String nombres,cpaterno, cmaterno, fechacita, horacita, genero;
+    private int edad;
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getFechacita() {
+        return fechacita;
+    }
+
+    public void setFechacita(String fechacita) {
+        this.fechacita = fechacita;
+    }
+
+    public String getHoracita() {
+        return horacita;
+    }
+
+    public void setHoracita(String horacita) {
+        this.horacita = horacita;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getCpaterno() {
+        return cpaterno;
+    }
+
+    public void setCpaterno(String cpaterno) {
+        this.cpaterno = cpaterno;
+    }
+
+    public String getCmaterno() {
+        return cmaterno;
+    }
+
+    public void setCmaterno(String cmaterno) {
+        this.cmaterno = cmaterno;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    
     public String getTipo() {
         return tipo;
     }
@@ -318,4 +379,41 @@ public class Usuarios {
             respuesta = "Error de ejecución en baja(): " + e.getMessage();
         }
     }
+     public void Generacita() {
+        try {
+            Connection c = Conexion.conectar(); // usamos tu clase Conexion
+ 
+            if (c != null) {PreparedStatement check = c.prepareStatement("SELECT * FROM Citas WHERE nombres = ?");
+                check.setString(1, getNombres());
+                ResultSet rs = check.executeQuery();
+                if (rs.next()) {
+                    respuesta = "El nombre '" + getNombres() + "' ya está registrado.";
+                } else {PreparedStatement ps = c.prepareStatement( "INSERT INTO Citas VALUES (?,?,?,?,?,?,?)");
+                    ps.setString(1, getNombres());
+                    ps.setString(2, getCpaterno());
+                    ps.setString(3, getCmaterno());
+                    ps.setInt(4, getEdad());
+                    ps.setString(5, getGenero());
+                    ps.setDate(6, java.sql.Date.valueOf(getFechacita()));
+                    ps.setTime(7, java.sql.Time.valueOf(getHoracita()));
+    
+                    ps.executeUpdate();
+                    ps.close();
+                    respuesta = "Cita agregada correctamente.<br><a href='MenuAdmin.html'>Regresar</a>";
+                }
+ 
+                rs.close();
+                check.close();
+                c.close();
+ 
+            } else {
+                respuesta = "No hay conexión a la base.";
+            }
+ 
+        } catch (Exception e) {
+            respuesta = "Error de ejecución en alta(): " + e.getMessage();
+        }
+ 
+    }
+ 
 }

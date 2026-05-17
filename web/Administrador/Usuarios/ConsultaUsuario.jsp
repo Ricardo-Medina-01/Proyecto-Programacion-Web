@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="${pageContext.request.contextPath}/Control" method="post">
+        <form action="Control" method="post">
             Usuario
                 <jsp:useBean id="bd" class="bean.Usuarios">
                     <jsp:setProperty name="bd" property="opcion" value="llenaS" />

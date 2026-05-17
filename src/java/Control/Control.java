@@ -82,7 +82,7 @@ public class Control extends HttpServlet {
             Usuarios U = new Usuarios();
             U.setUsuario(request.getParameter("usuario"));
             U.consultarUsuario();
-            response.sendRedirect("Administrador/Usuarios/respuesta.jsp?respuesta="+ U.getRespuesta());
+            response.sendRedirect("respuesta.jsp?respuesta="+ U.getRespuesta());
             }
                       // Eliminar
         
@@ -90,7 +90,7 @@ public class Control extends HttpServlet {
             Usuarios U = new Usuarios();
             U.setUsuario(request.getParameter("usuario"));
             U.EliminarUsuario();
-            response.sendRedirect("Administrador/Usuarios/respuesta.jsp?respuesta="+ U.getRespuesta());
+            response.sendRedirect("respuesta.jsp?respuesta="+ U.getRespuesta());
             }
             
                             //Generar cita 
@@ -104,7 +104,7 @@ public class Control extends HttpServlet {
             U.setFechacita(request.getParameter("fechacita"));
             U.setHoracita(request.getParameter("horacita"));
             U.Generacita();
-            response.sendRedirect("Administrador/Citas/respuesta.jsp?respuesta=" + U.getRespuesta());
+            response.sendRedirect("respuesta.jsp?respuesta=" + U.getRespuesta());
 }              
 
     /**

@@ -225,4 +225,97 @@ public class Usuarios {
             respuesta="Error al modificar tipo "+er;
             }
     }
+        public void consultarUsuario() {
+        try {
+            Connection c = Conexion.conectar();
+ 
+            if (c != null) {PreparedStatement ps = c.prepareStatement("SELECT * FROM Usuarios WHERE usuario = ?");
+                ps.setString(1, getUsuario());
+                ResultSet rs = ps.executeQuery();
+ 
+                if (rs.next()) {
+ 
+                    this.nombre =rs.getString("nombre");
+                    this.paterno = rs.getString("aPaterno");
+                    this.materno =rs.getString("aMaterno");
+                    this.email = rs.getString("email");
+                    this.tipo =rs.getString("tipo");
+                    
+                    String tipoTexto = "";
+
+    if (tipo.equals("A")) {
+        tipoTexto = "Administrador";
+    }
+
+    if (tipo.equals("I")) {
+        tipoTexto = "Invitado";
+    }
+
+    if (tipo.equals("M")) {
+        tipoTexto = "Medico";
+    }
+
+    if (tipo.equals("E")) {
+        tipoTexto = "Empleado";
+    }
+ 
+                    respuesta =
+                    "<h1>Datos del Usuario</h1>"
+                    + "<br>"
+                    + "Usuario: " + getUsuario() + "<br>"
+                    + "Nombre: " + nombre + " "
+                    + paterno + " "
+                    + materno + "<br>"
+                    + "Email: " + email + "<br>"
+                    + "Tipo: " + tipoTexto + "<br><br>" +
+                            
+                    "<a href='Usuarios.html'>Regresar</a>";
+                } else {
+                    respuesta = "No se encontró la persona con el nombre '" + getUsuario() + "'.";
+                }
+ 
+                rs.close();
+                ps.close();
+                c.close();
+ 
+            } else {
+                respuesta = "No hay conexión a la base.";
+            }
+ 
+        } catch (Exception e) {
+            respuesta = "Error de ejecución en consulta(): " + e.getMessage();
+        }
+    }
+    public void EliminarUsuario() {
+        try {
+            Connection c = Conexion.conectar(); 
+ 
+            if (c != null) {
+                PreparedStatement check = c.prepareStatement("SELECT * FROM Usuarios WHERE usuario = ?");
+                check.setString(1, getUsuario());
+                ResultSet rs = check.executeQuery();
+ 
+                if (rs.next()) {
+                    PreparedStatement ps = c.prepareStatement("DELETE FROM Usuarios WHERE usuario = ?");
+                    ps.setString(1, getUsuario());
+                    ps.executeUpdate();
+                    ps.close();
+ 
+                    respuesta = "Usuario eliminado correctamente.<br><a href='Usuarios.html'>Regresar</a>";
+                } else {
+                    respuesta = "No se encontró el Usuario '" + getUsuario() + "'.";
+                }
+ 
+                rs.close();
+                check.close();
+                c.close();
+ 
+            } else {
+                respuesta = "No hay conexión a la base.";
+            }
+ 
+        } catch (Exception e) {
+            respuesta = "Error de ejecución en baja(): " + e.getMessage();
+        }
+    }
 }

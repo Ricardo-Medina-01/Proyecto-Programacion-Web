@@ -46,6 +46,102 @@ CREATE PROCEDURE AltaUsuario
 		SET @respuesta='Usuario ya existe, no se registro'  
 		END
 
+-------------------------------------------------------
+--PROCEDIMIENTO ALMACENADO VERIFICAR USUARIO PARA LOGIN
+-------------------------------------------------------
+CREATE PROCEDURE VerificaUsuario
+    @usuario char(12),
+    @pass char(32)
+AS
+BEGIN
+    SELECT tipo,status
+    FROM Usuarios
+    WHERE usuario=@usuario
+    AND pass=@pass
+END
+
+-------------------------------------------------------
+--PROCEDIMIENTO ALMACENADO MODIFICAR TIPO USUARIO
+-------------------------------------------------------
+CREATE PROCEDURE ModificarTipoUsuario
+    @usuario char(12),
+    @tipo char(1),
+    @respuesta varchar(50) OUTPUT
+AS
+BEGIN
+
+    UPDATE Usuarios
+    SET tipo=@tipo
+    WHERE usuario=@usuario
+
+    SET @respuesta='Tipo modificado'
+
+END
+
+-------------------------------------------------------
+--PROCEDIMIENTO ALMACENADO ACTIVAR USUARIO
+-------------------------------------------------------
+CREATE PROCEDURE ActivarUsuario
+    @usuario char(12),
+    @respuesta varchar(50) OUTPUT
+AS
+BEGIN
+
+    UPDATE Usuarios
+    SET status='A'
+    WHERE usuario=@usuario
+
+    SET @respuesta='Usuario activado'
+
+END
+
+-------------------------------------------------------
+--PROCEDIMIENTO ALMACENADO DESACTIVAR USUARIO
+-------------------------------------------------------
+CREATE PROCEDURE DesactivarUsuario
+    @usuario char(12),
+    @respuesta varchar(50) OUTPUT
+AS
+BEGIN
+
+    UPDATE Usuarios
+    SET status='I'
+    WHERE usuario=@usuario
+
+    SET @respuesta='Usuario desactivado'
+
+END
+
+
+----------------------------------------
+--PROCEDIMIENTO ALMACENADO CONSULTA DE USUARIOS
+----------------------------------------
+CREATE PROCEDURE ConsultarUsuarios
+AS
+BEGIN
+
+    SELECT usuario,
+           nombre,
+           aPaterno,
+           aMaterno,
+           email,
+           tipo,
+           status
+    FROM Usuarios
+
+END
+
+--------------------------------
+--PROCEDIMIENTO ALMACENADO LLENAR SELECTOR
+---------------------------------
+CREATE OR ALTER PROCEDURE SelectorUsuarios
+AS
+BEGIN
+    SELECT usuario
+    FROM Usuarios
+    WHERE tipo <> 'A'
+END
+GO
 ----------------------------------------
 --VISTA DE USUARIOS ACTIVOS
 ----------------------------------------
@@ -54,3 +150,15 @@ CREATE VIEW UsuariosActivos
 	SELECT usuario
 	FROM Usuarios
 	WHERE status='A'
+
+-----------------------------------
+--VISTA SELECTOR DE MEDICOS
+----------------------------------
+CREATE PROCEDURE SelectorMedicos
+AS
+BEGIN
+    SELECT usuario
+    FROM Usuarios
+    WHERE tipo='M'
+    AND status='A'
+END

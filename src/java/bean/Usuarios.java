@@ -175,45 +175,62 @@ public class Usuarios {
         if (opcion.equals("modificaT")){
             modificarTipo();
         }
+        if (opcion.equals("consultaUsuarios")){
+            consultarUsuarios();
+        }
     }
     
     
     public void buscaUsuario() {
         try {
-            Connection con = Conexion.conectar();
-            if (con != null) {
-                PreparedStatement ps = con.prepareStatement("select * from Usuarios where usuario=? and pass=?");
-                ps.setString(1, usuario);
-                ps.setString(2, password);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    String tipo = rs.getString("tipo");
-                    if (tipo.equals("I")) {
-                        respuesta = "Invitado/MenuInvitado.html";
+            Connection c = Conexion.conectar();
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call VerificaUsuario(?,?)}");
+                cs.setString(1, usuario);
+                cs.setString(2, password);
+                ResultSet rs = cs.executeQuery();
+                    if(rs.next()){
+                        String tipo = rs.getString("tipo");
+                        String status = rs.getString("status");
+                    if(status.equals("I")){
+                        respuesta="Error.jsp?respuesta=Usuario inactivo, lo sentimos :C";
+                        return;
                     }
-                    if (tipo.equals("A")) {
-                        respuesta = "Administrador/MenuAdmin.html";
+                    if(tipo.equals("A")){
+                        respuesta="Administrador/MenuAdmin.html";
                     }
-                    if (tipo.equals("M")) {
-                        respuesta = "Medico/MenuMedico.html";
+                    if(tipo.equals("I")){
+                        respuesta="Invitado/MenuInvitado.html";
                     }
-                    if (tipo.equals("E")) {
-                        respuesta = "Empleado/MenuEmpleado.html";
+                    if(tipo.equals("M")){
+                        respuesta="Medico/MenuMedico.html";
                     }
-                } else {
-                    respuesta = "Error.jsp?respuesta='No encontro dato'";
+                    if(tipo.equals("E")){
+                        respuesta="Empleado/MenuEmpleado.html";
+                    }
+                }else{
+                    respuesta="Error.jsp?respuesta=Usuario no encontrado";
                 }
-            } else {
-                respuesta = "Error.jsp?respuesta='No hay conexion en la base'";
+            }else{
+                respuesta="Error.jsp?respuesta=No hay conexion";
             }
-        } catch (Exception e) {
-            respuesta = "Error.jsp?respuesta='Error al buscar'" + e;
+        }catch(Exception e){
+            respuesta="Error "+e;
         }
     }
+    
     public int aleatorio(){
         return((int)(Math.random()*100));
     }
     
+    //*********************************
+    //*                               *
+    //       REGISTRAR USUARIOS
+    //*                               *
+    //*********************************
+                //*                               *//
+                //OBTENCION DE USUARIO POR SISTEMA*//
+                //*                               *//
     public void obtenerUsuario(){
         int y= aleatorio();
 
@@ -229,7 +246,9 @@ public class Usuarios {
         respuesta = "<H1> Tu usuario es " + usuario +" y tu password es "+password+"<br></H1>";
         guardarRegistro();
     }
-    
+                 //*                                *//
+                 //GUARDAR EN BD REGISTRO DE USUARIO*//
+                 //*                                *//
     public void guardarRegistro(){
         try{
         Connection c = Conexion.conectar();
@@ -250,41 +269,135 @@ public class Usuarios {
         respuesta = "Error al agregar usario"+ er;
         }
     }
-    public void llenarSelector() {
-        try {
+    
+    //*********************************
+    //*                               *
+    // MODIFICAIONES DE TIPO DE USUARIO
+    //*                               *
+    //*********************************
+            //*                               *//
+            //    VISUALIZACION DE USUARIOS   *//
+            //*                               *//
+    public void llenarSelector(){
+        try{
             Connection c = Conexion.conectar();
-            if (c != null) {
-                PreparedStatement ps = c.prepareStatement("select * from Usuarios");
-                ResultSet rs = ps.executeQuery();
-                respuesta = "<select name='usuario'>";
-                while (rs.next()) {
-                    String usuario = rs.getString("usuario");
-                    respuesta += "<option value='" + usuario + "'>" + usuario + "</option>";
- 
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call SelectorUsuarios}");
+                ResultSet rs = cs.executeQuery();
+                respuesta="";
+                while(rs.next()){
+                    respuesta += "<option value='"+rs.getString("usuario")+"'>" +rs.getString("usuario")+ "</option>";
                 }
-                respuesta += "</select>";
-            } else {
-                respuesta = "Error.jsp?respuesta=No hay conexion en la base";
+            }else{
+                respuesta="No hay conexion";
             }
-        } catch (Exception e) {
-            respuesta = "Error.jsp?respuesta=Error al llenar Selector " + e;
+        }catch(Exception e){
+            respuesta="Error "+e;
         }
     }
+            //*                               *
+            //    MODIFICACION DE TIPO
+            //*                               *
     public void modificarTipo(){
-        try {
+        try{
             Connection c = Conexion.conectar();
-            if (c != null) {
-                PreparedStatement ps = c.prepareStatement("update Usuarios set tipo=? where usuario=?");
-                ps.setString(1, tipo);
-                ps.setString(2, usuario);
-                ps.execute();
-                respuesta="Tipo modificado";
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call ModificarTipoUsuario(?,?,?)}");
+                cs.setString(1, usuario);
+                cs.setString(2, tipo);
+                cs.registerOutParameter(3, Types.VARCHAR);
+                cs.execute();
+                respuesta = cs.getString(3);
             }else{
-             respuesta="No hay conexion a la base";        
+                respuesta="No hay conexion";
             }
-        }catch(Exception er){
-            respuesta="Error al modificar tipo "+er;
+        }catch(Exception e){
+            respuesta="Error "+e;
+        }
+    }
+                //*                               *
+                //    ACTIVACION DE USUARIO
+                //*                               *
+    public void activarUsuario(){
+        try{
+            Connection c = Conexion.conectar();
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call ActivarUsuario(?,?)}");
+                cs.setString(1, usuario);
+                cs.registerOutParameter(2, Types.VARCHAR);
+                cs.execute();
+                respuesta = cs.getString(2);
+            }else{
+                respuesta="No hay conexion";
             }
+        }catch(Exception e){
+            respuesta="Error "+e;
+        }
+    }
+                //*                               *
+                //    DESACTIVACION DE USUARIO
+                //    ELIMINACION LOGICA --> DESACTIVACIÓN
+                //*                               *
+    public void desactivarUsuario(){
+        try{
+            Connection c = Conexion.conectar();
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call DesactivarUsuario(?,?)}");
+                cs.setString(1, usuario);
+                cs.registerOutParameter(2, Types.VARCHAR);
+                cs.execute();
+                respuesta = cs.getString(2);
+            }else{
+                respuesta="No hay conexion";
+            }
+        }catch(Exception e){
+            respuesta="Error "+e;
+        }
+    }
+    
+    //*********************************
+    //*                               *
+    //      CONSULTAS DE USUARIOS
+    //*                               *
+    //*********************************
+    public void consultarUsuarios(){
+        try{
+            Connection c = Conexion.conectar();
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call ConsultarUsuarios}");
+                ResultSet rs = cs.executeQuery();
+                respuesta="<table border='1'>";
+
+                respuesta+="<tr>";
+                respuesta+="<th>Usuario</th>";
+                respuesta+="<th>Nombre</th>";
+                respuesta+="<th>Paterno</th>";
+                respuesta+="<th>Materno</th>";
+                respuesta+="<th>Email</th>";
+                respuesta+="<th>Tipo</th>";
+                respuesta+="<th>Status</th>";
+                respuesta+="</tr>";
+
+                while(rs.next()){
+                    respuesta+="<tr>";
+
+                    respuesta+="<td>"+rs.getString("usuario")+"</td>";
+                    respuesta+="<td>"+rs.getString("nombre")+"</td>";
+                    respuesta+="<td>"+rs.getString("aPaterno")+"</td>";
+                    respuesta+="<td>"+rs.getString("aMaterno")+"</td>";
+                    respuesta+="<td>"+rs.getString("email")+"</td>";
+                    respuesta+="<td>"+rs.getString("tipo")+"</td>";
+                    respuesta+="<td>"+rs.getString("status")+"</td>";
+
+                    respuesta+="</tr>";
+                }
+                respuesta+="</table>";
+            }else{
+                respuesta="No hay conexion";
+            }
+        }catch(Exception e){
+            respuesta="Error "+e;
+        }
     }
         public void consultarUsuario() {
         try {

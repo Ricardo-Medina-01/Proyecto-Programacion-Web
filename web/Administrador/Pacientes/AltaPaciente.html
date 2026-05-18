@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Alta Paciente</title>
+</head>
+<body>
+
+<h2>Registro de Pacientes</h2>
+
+<form action="../../Control" method="post">
+
+    <input type="hidden" name="accion" value="altaPaciente">
+
+    Nombre:
+    <input type="text" name="nombre" required>
+    <br><br>
+
+    A. Paterno:
+    <input type="text" name="paterno" required>
+    <br><br>
+
+    A. Materno:
+    <input type="text" name="materno" required>
+    <br><br>
+
+    Teléfono:
+    <input type="text" name="telefono" required>
+    <br><br>
+
+    Email:
+    <input type="email" name="email" required>
+    <br><br>
+
+    Fecha de nacimiento:
+    <input type="date" name="fechaNacimiento" required>
+    <br><br>
+
+    Dirección:
+    <input type="text" name="direccion" required>
+    <br><br>
+
+    <input type="submit" value="Registrar Paciente">
+
+</form>
+
+<br><br>
+
+<a href="../Pacientes.html">Volver</a>
+
+</body>
+</html>

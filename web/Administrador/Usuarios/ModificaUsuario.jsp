@@ -12,12 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body><h1>
-        <form action="ModificaUsuario.jsp" method="get">
+        <form action="../../Control" method="post">
+            <input type="hidden" name="accion" value="modificarTipo">
             Usuario
-                <jsp:useBean id="bd" class="bean.Usuarios">
-                    <jsp:setProperty name="bd" property="opcion" value="llenaS" />
-                    <jsp:getProperty name="bd" property="respuesta" />
-                </jsp:useBean>     
+                <select name = "usuario">
+                    <%
+                        bean.Usuarios u = new bean.Usuarios();
+                        u.llenarSelector();
+                        out.print(u.getRespuesta());
+                    %>
+                </select>
             <br>
             Tipo<select name="tipo">
                 <option value="A">Administrador</option>
@@ -25,14 +29,11 @@
                 <option value="M">Medico</option>
                 <option value="E">Empleado</option>
             </select>
-            <input type="hidden" name="opcion" value="modificaT">
-            
+            <br>
             <input type="submit" value="Modificar">
         </form>
-            <jsp:setProperty name="bd" property="*"/>
-            <jsp:getProperty name="bd" property="respuesta"/>
             </h1>
             
-            <a href="Usuarios.html">Volver</a> // <a href="Inicio">Inicio</a>
+            <a href="../Usuarios.html">Volver</a> // <a href="../index.html">Inicio</a>
     </body>
 </html>

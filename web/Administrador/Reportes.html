@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reportes</title>
+</head>
+<body>
+
+<h1>Reportes de Consultas Médicas</h1>
+
+<form action="../Control" method="post">
+
+    Periodo:
+    <select name="periodo">
+        <option value="MES">Último mes</option>
+        <option value="SEMESTRE">Últimos 6 meses</option>
+        <option value="ANIO">Último año</option>
+    </select>
+
+    <br><br>
+
+    Tipo de reporte:
+    <select name="accion">
+        <option value="pdfBarrasConsultas">PDF Barras</option>
+        <option value="pdfPieConsultas">PDF Pie</option>
+        <option value="excelConsultas">Excel</option>
+        <option value="xmlConsultas">XML</option>
+    </select>
+
+    <br><br>
+
+    <input type="submit" value="Generar Reporte">
+
+</form>
+
+<br><br>
+
+<a href="MenuAdmin.html">Volver</a>
+
+</body>
+</html>

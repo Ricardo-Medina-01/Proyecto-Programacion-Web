@@ -195,23 +195,36 @@ public class Pacientes {
         }
     }
     public void modificarPaciente(){
+
         try{
+
             Connection c = Conexion.conectar();
+
             if(c != null){
-                CallableStatement cs =c.prepareCall("{call ModificarPaciente(?,?,?,?,?,?)}");
+
+                CallableStatement cs =
+                c.prepareCall("{call ModificarPaciente(?,?,?,?,?,?,?,?)}");
+
                 cs.setInt(1, idPaciente);
                 cs.setString(2, nombre);
-                cs.setString(3, aPaterno);
-                cs.setString(4, aMaterno);
+                cs.setString(3, paterno);
+                cs.setString(4, materno);
                 cs.setString(5, telefono);
-                cs.registerOutParameter(6, Types.VARCHAR);
+                cs.setString(6, email);
+                cs.setString(7, direccion);
+
+                cs.registerOutParameter(8, Types.VARCHAR);
+
                 cs.execute();
-                respuesta = cs.getString(6);
+
+                respuesta = cs.getString(8);
+
             }else{
                 respuesta = "No hay conexión";
             }
+
         }catch(Exception e){
-            respuesta = "Error " + e;
+            respuesta = "Error al modificar paciente " + e;
         }
     }
     public void desactivarPaciente(){
@@ -266,6 +279,32 @@ public class Pacientes {
             }
         }catch(Exception e){
             respuesta = "Error " + e;
+        }
+    }
+    public void buscarPaciente(){
+        try{
+            Connection c = Conexion.conectar();
+            if(c != null){
+                CallableStatement cs = c.prepareCall("{call BuscarPaciente(?)}");
+                cs.setInt(1, idPaciente);
+                ResultSet rs = cs.executeQuery();
+                if(rs.next()){
+                    nombre = rs.getString("nombre");
+                    paterno = rs.getString("aPaterno");
+                    materno = rs.getString("aMaterno");
+                    telefono = rs.getString("telefono");
+                    email = rs.getString("email");
+                    fechaNacimiento = rs.getString("fechaNacimiento");
+                    direccion = rs.getString("direccion");
+                }else{
+                    respuesta = "Paciente no encontrado";
+                }
+            }else{
+                respuesta = "No hay conexión";
+            }
+
+        }catch(Exception e){
+            respuesta = "Error al buscar paciente " + e;
         }
     }
 }

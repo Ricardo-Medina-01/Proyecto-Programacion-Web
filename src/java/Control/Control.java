@@ -208,9 +208,11 @@ public class Control extends HttpServlet {
             Pacientes p = new Pacientes();
             p.setIdPaciente(Integer.parseInt(request.getParameter("idPaciente")));
             p.setNombre(request.getParameter("nombre"));
-            p.setaPaterno(request.getParameter("aPaterno"));
-            p.setaMaterno(request.getParameter("aMaterno"));
+            p.setPaterno(request.getParameter("aPaterno"));
+            p.setMaterno(request.getParameter("aMaterno"));
             p.setTelefono(request.getParameter("telefono"));
+            p.setEmail(request.getParameter("email"));
+            p.setDireccion(request.getParameter("direccion"));
             p.modificarPaciente();
             request.setAttribute("respuesta",p.getRespuesta());
             request.getRequestDispatcher("Respuesta.jsp").forward(request,response);

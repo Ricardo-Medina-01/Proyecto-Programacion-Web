@@ -4,59 +4,91 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html"
-pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Modificar Paciente</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Paciente</title>
+</head>
 
-    <body>
+<body>
 
-        <h2>Modificar Paciente</h2>
+<h2>Modificar Paciente</h2>
 
-        <form action="../../Control" method="post">
+<%
+    bean.Pacientes p = new bean.Pacientes();
 
-            <input type="hidden" name="accion" value="modificarPaciente">
+    String id = request.getParameter("idPaciente");
 
-            Paciente:
-                <select name="idPaciente">
+    if(id != null && !id.equals("")){
+        p.setIdPaciente(Integer.parseInt(id));
+        p.buscarPaciente();
+    }
+%>
 
-                    <%
-                        bean.Pacientes p =
-                        new bean.Pacientes();
+<form action="ModificarPaciente.jsp" method="get">
 
-                        p.llenarPacientes();
+    Paciente:
 
-                        out.print(p.getRespuesta());
-                    %>
+    <select name="idPaciente" onchange="this.form.submit()">
 
-                </select>
-                <br><br>
+        <option value="">Seleccione paciente</option>
 
-            Nombre:
-                <input type="text" name="nombre" required>
-                <br><br>
+        <%
+            bean.Pacientes lista = new bean.Pacientes();
+            lista.llenarPacientes();
+            out.print(lista.getRespuesta());
+        %>
 
-            Paterno:
-                <input type="text" name="aPaterno" required>
-                <br><br>
+    </select>
 
-            Materno:
-                <input type="text" name="aMaterno" required>
-                <br><br>
+</form>
 
-            Teléfono:
-                <input type="text" name="telefono" required>
-                <br><br>
+<br><br>
 
-            <input type="submit" value="Modificar Paciente">
+<% if(id != null && !id.equals("")){ %>
 
-        </form>
+<form action="../../Control" method="post">
 
-    </body>
+    <input type="hidden" name="accion" value="modificarPaciente">
+
+    <input type="hidden" name="idPaciente" value="<%= id %>">
+
+    Nombre:
+    <input type="text" name="nombre" value="<%= p.getNombre() %>" required>
+    <br><br>
+
+    Paterno:
+    <input type="text" name="aPaterno" value="<%= p.getPaterno() %>" required>
+    <br><br>
+
+    Materno:
+    <input type="text" name="aMaterno" value="<%= p.getMaterno() %>" required>
+    <br><br>
+
+    Teléfono:
+    <input type="text" name="telefono" value="<%= p.getTelefono() %>" required>
+    <br><br>
+
+    Email:
+    <input type="email" name="email" value="<%= p.getEmail() %>" required>
+    <br><br>
+
+    Dirección:
+    <input type="text" name="direccion" value="<%= p.getDireccion() %>" required>
+    <br><br>
+
+    <input type="submit" value="Modificar Paciente">
+
+</form>
+
+<% } %>
+
+<br><br>
+
+<a href="../Pacientes.html">Volver</a>
+
+</body>
 </html>

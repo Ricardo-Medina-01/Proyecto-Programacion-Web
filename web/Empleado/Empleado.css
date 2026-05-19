@@ -1,0 +1,77 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 18/05/2026, 11:56:04 PM
+    Author     : pauye
+*/
+/* 1. Estilos generales y fondo (Estilo Claro y Relajante) */
+body {
+    /* Nueva tipografía: Montserrat (elegante y moderna) con alternativas limpias */
+    font-family: 'Montserrat', 'Segoe UI', Helvetica, Arial, sans-serif;
+    background-color: #f0f4f8; /* Gris azulado muy suave y limpio */
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 2. Contenedor del título */
+h1 {
+    color: #114b5f; /* Azul profundo corporativo */
+    margin-bottom: 35px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* 3. Estilo base para los botones principales (Sólidos con esquinas redondeadas) */
+a {
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #1a936f; /* Verde esmeralda clínico */
+    border-radius: 30px; /* Esquinas completamente redondeadas tipo píldora */
+    box-shadow: 0 4px 6px rgba(26, 147, 111, 0.15);
+    /* Transición suave para la animación */
+    transition: all 0.25s ease-in-out; 
+}
+
+/* MISMA ANIMACIÓN DEL ÚLTIMO: Aumento de tamaño y brillo expansivo (Hover) */
+a:hover {
+    background-color: #147457; /* Oscurece un poco el verde */
+    transform: scale(1.05); /* Efecto de aumento de tamaño del último estilo */
+    /* Brillo expansivo adaptado al color del botón */
+    box-shadow: 0 0 15px #1a936f, 0 0 30px rgba(26, 147, 111, 0.4); 
+}
+
+/* 4. Estilo y diferencia de color para "Cerrar Sesión" */
+a[href="../index.html"] {
+    background-color: #e65f5c; /* Tono coral/rojizo suave para alertas */
+    box-shadow: 0 4px 6px rgba(230, 95, 92, 0.15);
+}
+
+a[href="../index.html"]:hover {
+    background-color: #c94744;
+    box-shadow: 0 0 15px #e65f5c, 0 0 30px rgba(230, 95, 92, 0.4);
+}
+
+/* 5. Estilo y diferencia de color para el botón "Volver" */
+a[href="MenuEmpleado.html"] {
+    background-color: #5c677d; /* Gris azulado neutro */
+    box-shadow: 0 4px 6px rgba(92, 103, 125, 0.15);
+}
+
+a[href="MenuEmpleado.html"]:hover {
+    background-color: #434c5e;
+    box-shadow: 0 0 15px #5c677d, 0 0 30px rgba(92, 103, 125, 0.4);
+}

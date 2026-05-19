@@ -3,27 +3,60 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
+<!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clínica Dental</title>
     </head>
     <body>
-        <h2>Clínica Dental</h2>
+
+        <h1>Bienvenido a Clínica Dental</h1>
+
+        <p>
+            En nuestra clínica ofrecemos atención dental profesional para el cuidado de tu salud bucal.
+        </p>
+
+        <h2>Servicios</h2>
+
+        <ul>
+            <li>Limpieza dental</li>
+            <li>Revisión general</li>
+            <li>Tratamiento de caries</li>
+            <li>Extracciones</li>
+            <li>Ortodoncia</li>
+            <li>Blanqueamiento dental</li>
+            <li>Consultas de seguimiento</li>
+        </ul>
+
+        <p>
+            Para agendar una cita, comunícate con el personal de recepción de la clínica.
+        </p>
+
+        <hr>
+        <hr>
+
+        <h2>Acceso al sistema</h2>
+
+        <p>Solo personal autorizado.</p>
 
         <form action="Control" method="post">
+
             <input type="hidden" name="accion" value="login">
-            
+
             Usuario:
-            <input type="text" name="usuario">
+            <input type="text" name="usuario" required>
+
             <br><br>
-            
-            Password:
-            <input type="password" name="password">
+
+            Contraseña:
+            <input type="password" name="password" required>
+
             <br><br>
-            
-            <input type="submit" name="Login" value="Entrar">
+
+            <input type="submit" value="Iniciar Sesión">
+
         </form>
+
     </body>
 </html>

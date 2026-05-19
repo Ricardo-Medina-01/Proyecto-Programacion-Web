@@ -1,0 +1,69 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 18/05/2026, 11:24:53 PM
+    Author     : pauye
+*/
+/* 1. Estilos generales y fondo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Gris claro, limpio y clínico */
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 2. Contenedor del título */
+h1 {
+    color: #0f4c81; /* Azul médico principal */
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* 3. Estilo base para todos tus enlaces (botones) */
+a {
+    display: inline-block; /* Permite darles forma de botón respetando tus <br> */
+    width: 250px;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1aa6b7; /* Azul turquesa clínico */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por encima */
+a:hover {
+    background-color: #158493;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 4. Estilo especial para el botón "Cerrar sesión" (sin tocar el HTML) */
+a[href="../index.html"] {
+    background-color: #e06d53; /* Color coral/alerta */
+}
+
+a[href="../index.html"]:hover {
+    background-color: #c5543a;
+}
+
+/* 5. Estilo especial para el botón "Volver" (sin tocar el HTML) */
+a[href="MenuMedico.html"] {
+    background-color: #78909c; /* Gris azulado neutro */
+}
+
+a[href="MenuMedico.html"]:hover {
+    background-color: #546e7a;
+}

@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>Reportes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet"
+              href="../css/estilos.css">
     </head>
+
     <body>
 
-        <h1>Reportes de Consultas Médicas</h1>
+        <div class="dashboard">
 
-        <form action="../Control" method="post">
+            <div class="panel-menu">
 
-            Periodo:
-            <select name="periodo">
-                <option value="MES">Último mes</option>
-                <option value="SEMESTRE">Últimos 6 meses</option>
-                <option value="ANIO">Último año</option>
-            </select>
+                <h1>Reportes</h1>
 
-            <br><br>
+                <p>
+                    Generación de reportes administrativos de consultas médicas.
+                </p>
 
-            Tipo de reporte:
-            <select name="accion">
-                <option value="pdfBarrasConsultas">PDF Barras</option>
-                <option value="pdfPieConsultas">PDF Pie</option>
-                <option value="excelConsultas">Excel</option>
-                <option value="xmlConsultas">XML</option>
-            </select>
+                <form action="../Control"
+                      method="post"
+                      class="form-reporte">
 
-            <br><br>
+                    <label>Periodo:</label>
 
-            <input type="submit" value="Generar Reporte">
+                    <select name="periodo">
+                        <option value="MES">Último mes</option>
+                        <option value="SEMESTRE">Últimos 6 meses</option>
+                        <option value="ANIO">Último año</option>
+                    </select>
 
-        </form>
+                    <label>Tipo de reporte:</label>
 
-        <br><br>
+                    <select name="accion">
+                        <option value="pdfBarrasConsultas">PDF Barras</option>
+                        <option value="pdfPieConsultas">PDF Pie</option>
+                        <option value="excelConsultas">Excel</option>
+                        <option value="xmlConsultas">XML</option>
+                    </select>
 
-        <a href="MenuAdmin.html">Volver</a>
+                    <input type="submit"
+                           value="Generar Reporte">
+
+                </form>
+
+                <br>
+
+                <a class="cerrar"
+                   href="MenuAdmin.html">
+                    Volver
+                </a>
+
+            </div>
+
+        </div>
 
     </body>
 </html>

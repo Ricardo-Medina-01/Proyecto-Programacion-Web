@@ -1,0 +1,369 @@
+/******************************************************/
+/******************PANTALLA PRINCIPAL******************/
+/******************************************************/
+/* ===== CONFIGURACION GENERAL ===== */
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f8fb;
+    color:#263238;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+
+.contenedor{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.55)),
+
+    url('https://www.implantadental.es/images/noticias/1483543583elegir-un-buen-dentista.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+}
+
+/* ===== CARD PRINCIPAL ===== */
+
+.card-principal{
+
+    width:100%;
+    max-width:1100px;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.25);
+}
+
+/* ===== INFORMACION ===== */
+
+.info{
+
+    width:60%;
+
+    background:#0d6b8f;
+
+    color:white;
+
+    padding:60px;
+}
+
+.info h1{
+
+    font-size:48px;
+
+    margin-bottom:25px;
+}
+
+.info p{
+
+    line-height:1.8;
+
+    text-align:justify;
+
+    font-size:16px;
+}
+
+.info h2{
+
+    margin-top:35px;
+
+    font-size:28px;
+}
+
+.info ul{
+
+    margin-top:20px;
+}
+
+.info li{
+
+    margin-bottom:15px;
+
+    font-size:16px;
+}
+
+/* ===== LOGIN ===== */
+
+.login{
+
+    width:40%;
+
+    padding:50px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+}
+
+.login h2{
+
+    text-align:center;
+
+    color:#0d6b8f;
+
+    margin-bottom:30px;
+
+    font-size:32px;
+}
+
+.login p{
+
+    text-align:center;
+
+    color:#607d8b;
+
+    margin-bottom:30px;
+}
+
+/* ===== INPUTS ===== */
+
+.login input[type="text"],
+.login input[type="password"]{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:20px;
+
+    border:1px solid #cfd8dc;
+
+    border-radius:10px;
+
+    box-sizing:border-box;
+
+    font-size:15px;
+}
+
+/* ===== BOTON ===== */
+
+.login input[type="submit"]{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#0d6b8f;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.login input[type="submit"]:hover{
+
+    background:#09516d;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+    .card-principal{
+
+        flex-direction:column;
+    }
+
+    .info,
+    .login{
+
+        width:100%;
+    }
+
+    .info{
+
+        padding:40px;
+    }
+
+    .login{
+
+        padding:35px;
+    }
+}
+.cerrar{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    background:#607d8b;
+
+    color:white;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.cerrar:hover{
+
+    background:#455a64;
+
+    transform:translateY(-3px);
+}
+/******************************************************/
+/******************MENU ADMINISTRADOR******************/
+/******************************************************/
+/* ===== DASHBOARD / MENUS ===== */
+
+.dashboard{
+    min-height:100vh;
+    background:linear-gradient(135deg, #e3f2fd, #f8fbfd);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.panel-menu{
+    width:90%;
+    max-width:1000px;
+    background:white;
+    padding:50px;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+.panel-menu h1{
+    color:#0d6b8f;
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.panel-menu p{
+    color:#607d8b;
+    margin-bottom:35px;
+    font-size:17px;
+}
+
+.grid-menu{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+}
+
+.grid-menu a{
+    text-decoration:none;
+    background:#0d6b8f;
+    color:white;
+    padding:22px;
+    border-radius:16px;
+    font-weight:bold;
+    font-size:18px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(13,107,143,0.25);
+}
+
+.grid-menu a:hover{
+    background:#09516d;
+    transform:translateY(-5px);
+}
+
+.grid-menu .cerrar{
+    background:#607d8b;
+}
+
+.grid-menu .cerrar:hover{
+    background:#455a64;
+}
+
+/* ===== RESPONSIVE MENU ===== */
+
+@media(max-width:800px){
+    .grid-menu{
+        grid-template-columns:1fr;
+    }
+
+    .panel-menu{
+        padding:30px;
+    }
+
+    .panel-menu h1{
+        font-size:32px;
+    }
+}
+/******************************************************/
+/******************FORMULARIO REPORTES******************/
+/******************************************************/
+/* ===== FORMULARIO REPORTES ===== */
+
+.form-reporte{
+    max-width:500px;
+    margin:30px auto;
+    text-align:left;
+}
+
+.form-reporte label{
+    font-weight:bold;
+    color:#0d6b8f;
+    display:block;
+    margin-bottom:8px;
+}
+
+.form-reporte select,
+.form-reporte input[type="submit"]{
+    width:100%;
+    padding:14px;
+    margin-bottom:22px;
+    border-radius:10px;
+    border:1px solid #cfd8dc;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+.form-reporte input[type="submit"]{
+    background:#0d6b8f;
+    color:white;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+}
+
+.form-reporte input[type="submit"]:hover{
+    background:#09516d;
+}
+
+

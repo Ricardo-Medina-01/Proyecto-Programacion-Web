@@ -4,59 +4,89 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8">
+
         <title>Clínica Dental</title>
+
+        <link rel="stylesheet" href="css/estilos.css">
+
     </head>
+
     <body>
 
-        <h1>Bienvenido a Clínica Dental</h1>
+        <div class="hero">
+            <div class="card-principal">
+                <!-- INFORMACION -->
+                <div class="info">
+                    <h1>
+                        Clínica Dental
+                    </h1>
 
-        <p>
-            En nuestra clínica ofrecemos atención dental profesional para el cuidado de tu salud bucal.
-        </p>
+                    <p>
+                        En nuestra clínica ofrecemos atención dental
+                        profesional para el cuidado de tu salud bucal.
+                        Nuestro objetivo es brindar atención médica
+                        eficiente y de calidad mediante un sistema
+                        moderno de administración clínica.
+                    </p>
 
-        <h2>Servicios</h2>
+                    <h2>Servicios</h2>
 
-        <ul>
-            <li>Limpieza dental</li>
-            <li>Revisión general</li>
-            <li>Tratamiento de caries</li>
-            <li>Extracciones</li>
-            <li>Ortodoncia</li>
-            <li>Blanqueamiento dental</li>
-            <li>Consultas de seguimiento</li>
-        </ul>
+                    <ul>
+                        <li>Limpieza dental</li>
+                        <li>Revisión general</li>
+                        <li>Tratamiento de caries</li>
+                        <li>Extracciones</li>
+                        <li>Ortodoncia</li>
+                        <li>Blanqueamiento dental</li>
+                        <li>Consultas de seguimiento</li>
+                    </ul>
 
-        <p>
-            Para agendar una cita, comunícate con el personal de recepción de la clínica.
-        </p>
+                </div>
 
-        <hr>
-        <hr>
+                <!-- LOGIN -->
 
-        <h2>Acceso al sistema</h2>
+                <div class="login">
 
-        <p>Solo personal autorizado.</p>
+                    <h2>
+                        Iniciar Sesión
+                    </h2>
 
-        <form action="Control" method="post">
+                    <p>
+                        Acceso exclusivo para personal autorizado.
+                    </p>
 
-            <input type="hidden" name="accion" value="login">
+                    <form action="Control"
+                          method="post">
 
-            Usuario:
-            <input type="text" name="usuario" required>
+                        <input type="hidden"
+                               name="accion"
+                               value="login">
 
-            <br><br>
+                        <input type="text"
+                               name="usuario"
+                               placeholder="Usuario"
+                               required>
 
-            Contraseña:
-            <input type="password" name="password" required>
+                        <input type="password"
+                               name="password"
+                               placeholder="Contraseña"
+                               required>
 
-            <br><br>
+                        <input type="submit"
+                               value="Entrar">
 
-            <input type="submit" value="Iniciar Sesión">
+                    </form>
 
-        </form>
+                </div>
+
+            </div>
+
+        </div>
 
     </body>
 </html>

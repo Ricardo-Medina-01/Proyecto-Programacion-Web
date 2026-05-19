@@ -13,6 +13,7 @@ pageEncoding="UTF-8"%>
     <head>
     <meta charset="UTF-8">
     <title>Respuesta</title>
+    <link rel="stylesheet" href="estilos.css">
     </head>
         <body>
             <h2>

@@ -11,6 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Consulta Pacientes</title>
+        <link rel="stylesheet" href="Paciente.css">
     </head>
     <body>
 

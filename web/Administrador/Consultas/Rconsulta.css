@@ -1,0 +1,114 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 19 may 2026, 10:41:48
+    Author     : TESE
+*/
+
+body {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* El título principal de la página */
+h2 {
+    color: #0d6b8f;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Contenedor del Formulario */
+form {
+    background: white;
+    max-width: 550px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    color: #0d6b8f; /* Los textos sueltos de los labels adoptan este color */
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Inputs de texto, Selects y Textareas dentro del formulario */
+form select,
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px; /* Separa el input del texto de arriba */
+    border: 1px solid #cfd8dc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #263238;
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efecto al hacer clic en los campos */
+form select:focus,
+form input[type="text"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #0d6b8f;
+    box-shadow: 0 0 0 3px rgba(13, 107, 143, 0.15);
+}
+
+/* Ajuste específico para el cuadro de observaciones */
+form textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* Botón de Enviar (Guardar Consulta) */
+form input[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: #0d6b8f;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(13, 107, 143, 0.25);
+    margin-top: 10px;
+}
+
+form input[type="submit"]:hover {
+    background: #09516d;
+    transform: translateY(-2px);
+}
+
+/* El enlace "Volver" que está al final fuera del formulario */
+a {
+    display: inline-block;
+    text-decoration: none;
+    background: #607d8b;
+    color: white;
+    padding: 14px 35px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+a:hover {
+    background: #455a64;
+    transform: translateY(-3px);
+}

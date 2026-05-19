@@ -13,6 +13,7 @@ pageEncoding="UTF-8"%>
     <head>
         <meta charset="UTF-8">
         <title>Registrar Consulta</title>
+        <link rel="stylesheet" href="Rconsulta.css">
     </head>
     <body>
 

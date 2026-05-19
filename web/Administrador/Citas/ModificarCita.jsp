@@ -8,51 +8,46 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Modificar Cita</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Modificar Cita</title>
+    </head>
+    <body>
 
-<h2>Modificar Cita</h2>
+        <h2>Modificar Cita</h2>
 
-<form action="../../Control" method="post">
+        <form action="../../Control" method="post">
+            <input type="hidden" name="accion" value="modificarCita">
 
-    <input type="hidden" name="accion" value="modificarCita">
+            ID Cita:
+                <select name="idCita">
+                    <%
+                        bean.Citas c = new bean.Citas();
+                        c.llenarCitasActivas();
+                        out.print(c.getRespuesta());
+                    %>
+                </select>
+                <br><br>
 
-    ID Cita:
-    <select name="idCita">
-        <%
-            bean.Citas c = new bean.Citas();
-            c.llenarCitasActivas();
-            out.print(c.getRespuesta());
-        %>
-    </select>
+            Nueva fecha:
+                <input type="date" name="fecha" required>
+                <br><br>
 
-    <br><br>
+            Nueva hora:
+                <input type="time" name="hora" required>
+                <br><br>
 
-    Nueva fecha:
-    <input type="date" name="fecha" required>
+            Motivo:
+                <input type="text" name="motivo" required>
+                <br><br>
 
-    <br><br>
+                <input type="submit" value="Modificar Cita">
 
-    Nueva hora:
-    <input type="time" name="hora" required>
+        </form>
 
-    <br><br>
+        <br><br>
+        
+        <a href="../Citas.html">Volver</a>
 
-    Motivo:
-    <input type="text" name="motivo" required>
-
-    <br><br>
-
-    <input type="submit" value="Modificar Cita">
-
-</form>
-
-<br><br>
-
-<a href="../Citas.html">Volver</a>
-
-</body>
+    </body>
 </html>

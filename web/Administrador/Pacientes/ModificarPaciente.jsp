@@ -10,71 +10,53 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Modificar Paciente</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Modificar Paciente</title>
+    </head>
 
-<body>
+    <body>
 
-<h2>Modificar Paciente</h2>
+        <h2>Modificar Paciente</h2>
 
-<form action="../../Control"
-      method="post">
+        <form action="../../Control" method="post">
 
-    <input type="hidden"
-           name="accion"
-           value="modificarPaciente">
+            <input type="hidden" name="accion" value="modificarPaciente">
 
-    Paciente:
+            Paciente:
+                <select name="idPaciente">
 
-    <select name="idPaciente">
+                    <%
+                        bean.Pacientes p =
+                        new bean.Pacientes();
 
-        <%
-            bean.Pacientes p =
-            new bean.Pacientes();
+                        p.llenarPacientes();
 
-            p.llenarPacientes();
+                        out.print(p.getRespuesta());
+                    %>
 
-            out.print(p.getRespuesta());
-        %>
+                </select>
+                <br><br>
 
-    </select>
+            Nombre:
+                <input type="text" name="nombre" required>
+                <br><br>
 
-    <br><br>
+            Paterno:
+                <input type="text" name="aPaterno" required>
+                <br><br>
 
-    Nombre:
-    <input type="text"
-           name="nombre"
-           required>
+            Materno:
+                <input type="text" name="aMaterno" required>
+                <br><br>
 
-    <br><br>
+            Teléfono:
+                <input type="text" name="telefono" required>
+                <br><br>
 
-    Paterno:
-    <input type="text"
-           name="aPaterno"
-           required>
+            <input type="submit" value="Modificar Paciente">
 
-    <br><br>
+        </form>
 
-    Materno:
-    <input type="text"
-           name="aMaterno"
-           required>
-
-    <br><br>
-
-    Teléfono:
-    <input type="text"
-           name="telefono"
-           required>
-
-    <br><br>
-
-    <input type="submit"
-           value="Modificar Paciente">
-
-</form>
-
-</body>
+    </body>
 </html>

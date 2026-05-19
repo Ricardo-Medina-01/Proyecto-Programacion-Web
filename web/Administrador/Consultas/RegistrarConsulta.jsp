@@ -10,64 +10,44 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Registrar Consulta</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registrar Consulta</title>
+    </head>
+    <body>
 
-<body>
+        <h2>Registrar Consulta</h2>
 
-<h2>Registrar Consulta</h2>
+        <form action="../../Control" method="post">
 
-<form action="../../Control"
-      method="post">
+            <input type="hidden" name="accion" value="registrarConsulta">
 
-    <input type="hidden"
-           name="accion"
-           value="registrarConsulta">
+            ID Cita:
+                <select name="idCita">
+                    <%
+                        bean.Consultas c =
+                        new bean.Consultas();
 
-    ID Cita:
+                        c.llenarCitas();
 
-    <select name="idCita">
+                        out.print(c.getRespuesta());
+                    %>
+                </select>
+                <br><br>
 
-        <%
-            bean.Consultas c =
-            new bean.Consultas();
+            Medicamento:
+                <input type="text" name="medicamento" required>
+                <br><br>
 
-            c.llenarCitas();
+            Observaciones:
+                <textarea name="observaciones"></textarea>
+                <br><br>
 
-            out.print(c.getRespuesta());
-        %>
+            <input type="submit" value="Guardar Consulta">
 
-    </select>
+        </form>
+        <br><br>
 
-    <br><br>
-
-    Medicamento:
-
-    <input type="text"
-           name="medicamento"
-           required>
-
-    <br><br>
-
-    Observaciones:
-
-    <textarea name="observaciones">
-    </textarea>
-
-    <br><br>
-
-    <input type="submit"
-           value="Guardar Consulta">
-
-</form>
-
-<br><br>
-
-<a href="../Consultas.html">
-    Volver
-</a>
-
-</body>
+        <a href="../Consultas.html">Volver</a>
+    </body>
 </html>

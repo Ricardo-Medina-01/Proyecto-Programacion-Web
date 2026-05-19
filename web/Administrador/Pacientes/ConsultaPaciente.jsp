@@ -8,23 +8,21 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Consulta Pacientes</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Consulta Pacientes</title>
+    </head>
+    <body>
 
-<h2>Consulta de Pacientes</h2>
+        <h2>Consulta de Pacientes</h2>
 
-<%
-    bean.Pacientes p = new bean.Pacientes();
-    p.consultarPacientes();
-    out.print(p.getRespuesta());
-%>
+            <%
+                bean.Pacientes p = new bean.Pacientes();
+                p.consultarPacientes();
+                out.print(p.getRespuesta());
+            %>
+            <br><br>
 
-<br><br>
-
-<a href="../Pacientes.html">Volver</a>
-
-</body>
+            <a href="../Pacientes.html">Volver</a>
+    </body>
 </html>

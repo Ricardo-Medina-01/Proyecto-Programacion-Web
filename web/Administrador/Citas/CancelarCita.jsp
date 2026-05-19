@@ -8,36 +8,31 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Cancelar Cita</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Cancelar Cita</title>
+    </head>
+    <body>
 
-<h2>Cancelar Cita</h2>
+    <h2>Cancelar Cita</h2>
 
-<form action="../../Control" method="post">
+        <form action="../../Control" method="post">
 
-    <input type="hidden" name="accion" value="cancelarCita">
+            <input type="hidden" name="accion" value="cancelarCita">
 
-    ID Cita:
-    <select name="idCita">
-        <%
-            bean.Citas c = new bean.Citas();
-            c.llenarCitasActivas();
-            out.print(c.getRespuesta());
-        %>
-    </select>
-
-    <br><br>
-
-    <input type="submit" value="Cancelar Cita">
-
-</form>
-
-<br><br>
-
-<a href="../Citas.html">Volver</a>
-
-</body>
+            ID Cita:
+            <select name="idCita">
+                <%
+                    bean.Citas c = new bean.Citas();
+                    c.llenarCitasActivas();
+                    out.print(c.getRespuesta());
+                %>
+            </select><br><br>
+        
+            <input type="submit" value="Cancelar Cita">
+        </form>
+        <br><br>
+    
+        <a href="../Citas.html">Volver</a>
+    </body>
 </html>

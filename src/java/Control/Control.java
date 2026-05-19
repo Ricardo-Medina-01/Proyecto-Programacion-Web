@@ -229,9 +229,6 @@ public class Control extends HttpServlet {
             request.setAttribute("respuesta",p.getRespuesta());
             request.getRequestDispatcher("Respuesta.jsp").forward(request,response);
         }
-        if(accion.equals("")){
-            
-        }
     }
 
     /**
@@ -243,5 +240,5 @@ public class Control extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+

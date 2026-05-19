@@ -8,42 +8,38 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Activar / Desactivar Paciente</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Activar / Desactivar Paciente</title>
+    </head>
+    <body>
 
-<h2>Activar / Desactivar Paciente</h2>
+    <h2>Activar / Desactivar Paciente</h2>
 
-<form action="../../Control" method="post">
+        <form action="../../Control" method="post">
 
-    Paciente:
-    <select name="idPaciente">
-        <%
-            bean.Pacientes p = new bean.Pacientes();
-            p.llenarPacientesTodos();
-            out.print(p.getRespuesta());
-        %>
-    </select>
+            Paciente:
+                <select name="idPaciente">
+                    <%
+                        bean.Pacientes p = new bean.Pacientes();
+                        p.llenarPacientesTodos();
+                        out.print(p.getRespuesta());
+                    %>
+                </select>
+                <br><br>
 
-    <br><br>
+            Acción:
+                <select name="accion">
+                    <option value="activarPaciente">Activar</option>
+                    <option value="desactivarPaciente">Desactivar</option>
+                </select>
+                <br><br>
 
-    Acción:
-    <select name="accion">
-        <option value="activarPaciente">Activar</option>
-        <option value="desactivarPaciente">Desactivar</option>
-    </select>
+            <input type="submit" value="Guardar Cambio">
 
-    <br><br>
+        </form>
+        <br><br>
 
-    <input type="submit" value="Guardar Cambio">
-
-</form>
-
-<br><br>
-
-<a href="../Pacientes.html">Volver</a>
-
-</body>
+        <a href="../Pacientes.html">Volver</a>
+    </body>
 </html>
